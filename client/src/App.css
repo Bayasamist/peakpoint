@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.nav-link {
+  @apply block text-blue-600 hover:text-blue-800 transition font-medium;
+}
 
 .App-logo {
   height: 40vmin;
