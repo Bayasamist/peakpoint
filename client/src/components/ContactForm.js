@@ -27,42 +27,49 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 border rounded shadow my-6">
-      <h2 className="text-xl font-bold mb-4">Contact Us</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="max-w-xl mx-auto p-6 bg-gradient-to-br from-gray-800 via-gray-900 to-black rounded-2xl shadow-xl border border-gray-700 mt-10">
+      <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+        📬 Contact Us
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-5">
         <input
           name="name"
           type="text"
-          placeholder="Your name"
+          placeholder="Full Name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
           required
         />
         <input
           name="email"
           type="email"
-          placeholder="Your email"
+          placeholder="Email Address"
           value={formData.email}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
           required
         />
         <textarea
           name="message"
-          placeholder="Your message"
+          placeholder="Your Message..."
           value={formData.message}
           onChange={handleChange}
-          className="w-full p-2 border rounded h-24"
+          rows="5"
+          className="w-full p-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
           required
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
         >
-          Send
+          Send Message
         </button>
-        {status && <p className="text-sm mt-2">{status}</p>}
+        {status && (
+          <p className={`text-sm mt-3 ${status.includes('✅') ? 'text-green-400' : 'text-red-400'}`}>
+            {status}
+          </p>
+        )}
       </form>
     </div>
   );

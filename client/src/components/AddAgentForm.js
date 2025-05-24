@@ -38,7 +38,7 @@ const AddAgentForm = () => {
       const data = await res.json();
 
       if (res.ok) {
-        setStatus('✅ Agent added!');
+        setStatus('✅ Agent added successfully!');
         setFormData({
           name: '',
           agency: '',
@@ -57,19 +57,47 @@ const AddAgentForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto border p-4 rounded shadow my-6">
-      <h2 className="text-xl font-bold mb-4">Add New Agent</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input name="name" placeholder="Name" value={formData.name} onChange={handleChange} required className="w-full p-2 border rounded" />
-        <input name="agency" placeholder="Agency" value={formData.agency} onChange={handleChange} required className="w-full p-2 border rounded" />
-        <input name="country" placeholder="Country" value={formData.country} onChange={handleChange} className="w-full p-2 border rounded" />
-        <input name="email" type="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded" />
-        <input name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} className="w-full p-2 border rounded" />
-        <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange} className="w-full p-2 border rounded h-20" />
-        <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
-          Add Agent
+    <div className="max-w-2xl mx-auto my-10 px-6 py-8 bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-2xl shadow-xl">
+      <h2 className="text-3xl font-bold text-white mb-6 text-center">Add New Agent</h2>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {[
+          { name: 'name', type: 'text', placeholder: 'Full Name', required: true },
+          { name: 'agency', type: 'text', placeholder: 'Agency Name', required: true },
+          { name: 'country', type: 'text', placeholder: 'Country' },
+          { name: 'email', type: 'email', placeholder: 'Email' },
+          { name: 'phone', type: 'text', placeholder: 'Phone Number' },
+        ].map(({ name, type, placeholder, required }) => (
+          <input
+            key={name}
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            required={required}
+            value={formData[name]}
+            onChange={handleChange}
+            className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          />
+        ))}
+
+        <textarea
+          name="description"
+          placeholder="Short Description"
+          value={formData.description}
+          onChange={handleChange}
+          rows={4}
+          className="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+
+        <button
+          type="submit"
+          className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg"
+        >
+          ➕ Add Agent
         </button>
-        {status && <p className="text-sm mt-2">{status}</p>}
+
+        {status && (
+          <p className="text-sm text-center mt-4 text-gray-300">{status}</p>
+        )}
       </form>
     </div>
   );

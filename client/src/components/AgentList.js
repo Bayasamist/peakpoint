@@ -9,21 +9,39 @@ const AgentList = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Our Agents</h2>
-      <ul className="space-y-3">
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+        🌍 Meet Our Trusted Agents
+      </h2>
+
+      <div className="grid md:grid-cols-2 gap-6">
         {agents.map((agent) => (
-          <li key={agent._id} className="border p-3 rounded shadow">
-            <h3 className="font-semibold">{agent.name} — {agent.agency}</h3>
-            <p>{agent.description}</p>
-            <p className="text-sm text-gray-500">
-              {agent.email && <>📧 {agent.email}</>}
-              {agent.phone && <> | 📞 {agent.phone}</>}
-              {agent.country && <> | 🌍 {agent.country}</>}
-            </p>
-          </li>
+          <div
+            key={agent._id}
+            className="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-6 rounded-2xl border border-gray-700 shadow-lg transition-transform hover:scale-105"
+          >
+            <h3 className="text-xl font-semibold text-white mb-2">
+              {agent.name} <span className="text-purple-400">— {agent.agency}</span>
+            </h3>
+            <p className="text-gray-300 mb-4">{agent.description}</p>
+            <div className="text-sm text-gray-400 space-y-1">
+              {agent.email && (
+                <p>📧 <span className="text-gray-300">{agent.email}</span></p>
+              )}
+              {agent.phone && (
+                <p>📞 <span className="text-gray-300">{agent.phone}</span></p>
+              )}
+              {agent.country && (
+                <p>🌍 <span className="text-gray-300">{agent.country}</span></p>
+              )}
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
+
+      {agents.length === 0 && (
+        <p className="text-center text-gray-400 mt-10">No agents available at the moment.</p>
+      )}
     </div>
   );
 };
